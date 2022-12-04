@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Events</h1>
+
+<p>Here you can find the list of all the events</p>
+
+<p *ngIf="!events"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="events">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events">
+      <td>{{ event.eventTitle }}</td>
+      <td>{{ event.eventDescription }}</td>
+      <td>{{ event.eventStartDateTime }}</td>
+      <td>{{ event.eventEndDateTime || "-" }}</td>
+    </tr>
+  </tbody>
+</table>
