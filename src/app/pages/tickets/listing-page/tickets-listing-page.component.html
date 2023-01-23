@@ -1,0 +1,27 @@
+<h1 id="tableLabel">Tickets</h1>
+
+<p>Here you can find all your tickets</p>
+
+<p *ngIf="!tickets"><em>Loading...</em></p>
+<div class="table-responsive">
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="tickets">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Details</th>
+        <th>Purchase DateTime</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ ticket.eventId }}</td>
+        <td>{{ ticket.ticketPrice }}</td>
+        <td>{{ ticket.ticketCategory }}</td>
+        <td>{{ ticket.ticketDetails }}</td>
+        <td>{{ ticket.purchaseDateTime }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

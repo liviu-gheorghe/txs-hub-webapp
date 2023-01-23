@@ -7,21 +7,26 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchEventsComponent } from './pages/events/fetch-events.component';
+
+// Authorization
+
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-import { FetchTicketsComponent } from './pages/tickets/fetch-tickets.component';
+
+// Listing pages
+import { EventsListingPageComponent } from './pages/events/listing-page/events-listing-page.component';
+import { TicketsListingPageComponent } from './pages/tickets/listing-page/tickets-listing-page.component';
+import { LocationsListingPageComponent } from './pages/locations/listing-page/locations-listing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchEventsComponent,
-    FetchTicketsComponent,
+    EventsListingPageComponent,
+    TicketsListingPageComponent,
+    LocationsListingPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,9 +35,9 @@ import { FetchTicketsComponent } from './pages/tickets/fetch-tickets.component';
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'events', component: FetchEventsComponent, canActivate: [AuthorizeGuard] },
-      { path: 'tickets', component: FetchTicketsComponent, canActivate: [AuthorizeGuard] },
+      { path: 'events', component: EventsListingPageComponent, canActivate: [AuthorizeGuard] },
+      { path: 'tickets', component: TicketsListingPageComponent, canActivate: [AuthorizeGuard] },
+      { path: 'locations', component: LocationsListingPageComponent, canActivate: [AuthorizeGuard] },
     ])
   ],
   providers: [

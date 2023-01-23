@@ -1,0 +1,34 @@
+<h1 id="tableLabel">Locations</h1>
+
+<p>Here you can find locations</p>
+
+<p *ngIf="!locations"><em>Loading...</em></p>
+<div class="table-responsive">
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="locations">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Region</th>
+        <th>County</th>
+        <th>City</th>
+        <th>Zip Code</th>
+        <th>Address</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let location of locations">
+        <td>{{ location.country }}</td>
+        <td>{{ location.region }}</td>
+        <td>{{ location.county }}</td>
+        <td>{{ location.city }}</td>
+        <td>{{ location.zipCode }}</td>
+        <td>{{ location.address }}</td>
+        <td>{{ location.latitude }}</td>
+        <td>{{ location.longitude }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

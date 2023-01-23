@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'tickets-page',
-  templateUrl: './fetch-tickets.component.html'
+  templateUrl: './tickets-listing-page.component.html'
 })
-export class FetchTicketsComponent {
+export class TicketsListingPageComponent {
   public tickets: Ticket[] = [];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
