@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import {Location} from "../../../data/interfaces/Location";
+import {LocationService} from "../../../core/services/location.service";
 
 @Component({
   selector: 'Locations-page',
@@ -8,21 +9,12 @@ import { HttpClient } from '@angular/common/http';
 export class LocationsListingPageComponent {
   public locations: Location[] = [];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Location[]>(baseUrl + 'api/locations').subscribe(result => {
-      this.locations = result;
-    }, error => console.error(error));
+  constructor(private readonly locationService: LocationService) {
   }
-}
 
-interface Location {
-  id?: string,
-  country: string,
-  region?: string,
-  county?: string,
-  city?: string,
-  zipCode?: string,
-  address?: string,
-  latitude?: number,
-  longitude?: number
+  ngOnInit() {
+    this.locationService.getAllLocations().subscribe((data: Array<Location>) => {
+      this.locations = data;
+    }, error => console.error(error))
+  }
 }

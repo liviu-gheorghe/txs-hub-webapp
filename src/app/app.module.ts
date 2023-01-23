@@ -5,7 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import {FooterComponent} from "./components/footer/footer.component";
 import { HomeComponent } from './home/home.component';
 
 // Authorization
@@ -19,14 +20,21 @@ import { EventsListingPageComponent } from './pages/events/listing-page/events-l
 import { TicketsListingPageComponent } from './pages/tickets/listing-page/tickets-listing-page.component';
 import { LocationsListingPageComponent } from './pages/locations/listing-page/locations-listing-page.component';
 
+
+// Pricing Page
+
+import {PricingPageComponent} from "./pages/pricing/pricing-page/pricing-page.component";
+
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
+    FooterComponent,
     HomeComponent,
     EventsListingPageComponent,
     TicketsListingPageComponent,
-    LocationsListingPageComponent
+    LocationsListingPageComponent,
+    PricingPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +46,7 @@ import { LocationsListingPageComponent } from './pages/locations/listing-page/lo
       { path: 'events', component: EventsListingPageComponent, canActivate: [AuthorizeGuard] },
       { path: 'tickets', component: TicketsListingPageComponent, canActivate: [AuthorizeGuard] },
       { path: 'locations', component: LocationsListingPageComponent, canActivate: [AuthorizeGuard] },
+      { path: 'pricing', component: PricingPageComponent },
     ])
   ],
   providers: [

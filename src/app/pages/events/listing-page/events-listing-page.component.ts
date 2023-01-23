@@ -1,23 +1,20 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {Event} from "../../../data/interfaces/Event";
+import {EventService} from "../../../core/services/event.service";
 
 @Component({
   selector: 'events-page',
   templateUrl: './events-listing-page.component.html'
 })
-export class EventsListingPageComponent {
+export class EventsListingPageComponent implements OnInit {
   public events: Event[] = [];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Event[]>(baseUrl + 'api/events').subscribe(result => {
-      this.events = result;
-    }, error => console.error(error));
+  constructor(private readonly eventService: EventService) {
   }
-}
 
-interface Event {
-  eventTitle: string;
-  eventDescription: number;
-  eventStartDateTime: number;
-  eventEndDateTime: string;
+  ngOnInit() {
+    this.eventService.getAllEvents().subscribe((data: Array<Event>) => {
+      this.events = data;
+    }, error => console.error(error))
+  }
 }

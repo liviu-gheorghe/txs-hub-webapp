@@ -1,28 +1,20 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {Ticket} from "../../../data/interfaces/Ticket";
+import {TicketService} from "../../../core/services/ticket.service";
 
 @Component({
   selector: 'tickets-page',
   templateUrl: './tickets-listing-page.component.html'
 })
-export class TicketsListingPageComponent {
+export class TicketsListingPageComponent implements OnInit {
   public tickets: Ticket[] = [];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Ticket[]>(baseUrl + 'api/tickets').subscribe(result => {
-      this.tickets = result;
-    }, error => console.error(error));
+  constructor(private readonly ticketService: TicketService) {
   }
-}
 
-interface Ticket {
-  id?: string,
-  ticketPrice: number,
-  ticketDetails?: string,
-  ticketCategory?: string,
-  customerId: string,
-  eventId: string,
-  purchaseDateTime: string,
-  dateCreated?: string,
-  dateModified?: string
+  ngOnInit() {
+    this.ticketService.getAllTickets().subscribe((data: Array<Ticket>) => {
+      this.tickets = data;
+    }, error => console.error(error))
+  }
 }
