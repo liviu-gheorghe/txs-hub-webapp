@@ -19,7 +19,6 @@ export class EventPageComponent implements OnInit {
     this.eventId = this.route.snapshot.params.eventId;
 
     this.eventService.getEventById(this.eventId).subscribe((data: Event) => {
-      console.log(data);
       this.event = data;
     }, error => console.error(error))
   }

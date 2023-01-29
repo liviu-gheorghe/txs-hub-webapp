@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Event} from "../../../data/interfaces/Event";
-import {EventService} from "../../../core/services/event.service";
+import { Component, OnInit } from '@angular/core';
+import { Event } from "../../../data/interfaces/Event";
+import { EventService } from "../../../core/services/event.service";
 
 @Component({
   selector: 'events-page',
@@ -9,7 +9,15 @@ import {EventService} from "../../../core/services/event.service";
 export class EventsListingPageComponent implements OnInit {
   public events: Event[] = [];
 
+  public searchQuery: string = "";
+
   constructor(private readonly eventService: EventService) {
+  }
+
+  public updateSearchQuery() {
+    this.eventService.getAllEvents(this.searchQuery).subscribe((events: Array<Event>) => {
+      this.events = events;
+    }, error => console.error(error))
   }
 
   ngOnInit() {

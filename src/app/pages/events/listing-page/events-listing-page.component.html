@@ -1,28 +1,41 @@
 <h1 id="tableLabel">Events</h1>
 
-<p>Here you can find all your events</p>
 
-<p *ngIf="!events"><em>Loading...</em></p>
+<div class="d-flex flex-row">
+
+  <p>Let's have some fun with some of the coolest upcoming events</p>
+  <div>
+
+  </div>
+
+</div>
 
 
-<div class="table-responsive">
-  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="events">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let event of events">
+<div class="my-2 mt-2 mb-4">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchQuery"
+    (input)="updateSearchQuery()">
+</div>
 
-        <td><a class="text-reset text-decoration-none" href="events/{{event.id}}">{{ event.eventTitle }}</a></td>
-        <td>{{ event.eventDescription }}</td>
-        <td>{{ event.eventStartDateTime }}</td>
-        <td>{{ event.eventEndDateTime || "-" }}</td>
-      </tr>
-    </tbody>
-  </table>
+
+<div class="d-flex justify-content-center" *ngIf="!events">
+  <div class="spinner-border" role="status">
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+  <div class="col" *ngFor="let event of events">
+    <a class="text-reset text-decoration-none" href="events/{{event.id}}">
+      <div class="card">
+        <img src="{{event.eventImageURL}}" height="516" style="object-fit: contain;" class="card-img-top" alt="" />
+        <div class="card-body">
+          <h5 class="card-title">{{ event.eventTitle }}</h5>
+          <p class="card-text">
+            {{ event.eventDescription }}
+          </p>
+          <p class="btn btn-outline-secondary"> Buy Ticket</p>
+        </div>
+      </div>
+    </a>
+  </div>
 </div>
