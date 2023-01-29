@@ -17,7 +17,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let event of events">
-        <td>{{ event.eventTitle }}</td>
+
+        <td><a class="text-reset text-decoration-none" href="events/{{event.id}}">{{ event.eventTitle }}</a></td>
         <td>{{ event.eventDescription }}</td>
         <td>{{ event.eventStartDateTime }}</td>
         <td>{{ event.eventEndDateTime || "-" }}</td>

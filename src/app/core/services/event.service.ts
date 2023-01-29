@@ -16,7 +16,7 @@ export class EventService {
   }
 
   getEventById(id: string): Observable<Event> {
-    return this.apiService.get(this.apiRoute, {id});
+    return this.apiService.get(`${this.apiRoute}/${id}`);
   }
 
   deleteEventById(eventId: string): Observable<any> {

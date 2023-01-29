@@ -24,6 +24,7 @@ import { LocationsListingPageComponent } from './pages/locations/listing-page/lo
 // Pricing Page
 
 import {PricingPageComponent} from "./pages/pricing/pricing-page/pricing-page.component";
+import {EventPageComponent} from "./pages/events/event-page/event-page.component";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {PricingPageComponent} from "./pages/pricing/pricing-page/pricing-page.co
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'events', component: EventsListingPageComponent, canActivate: [AuthorizeGuard] },
+      { path: 'events/:eventId', component: EventPageComponent, canActivate: [AuthorizeGuard] },
       { path: 'tickets', component: TicketsListingPageComponent, canActivate: [AuthorizeGuard] },
       { path: 'locations', component: LocationsListingPageComponent, canActivate: [AuthorizeGuard] },
       { path: 'pricing', component: PricingPageComponent },
